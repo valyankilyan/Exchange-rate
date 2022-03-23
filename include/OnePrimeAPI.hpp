@@ -1,15 +1,15 @@
 #ifndef ONEPRIME_API
 #define ONEPRIME_API
 
-#include "ExchangeAPI.hpp"
+// #include "ExchangeAPI.hpp"
 #include <string>
-#include <ctime>
+#include <curl/curl.h>
 
 using namespace std;
 
-#define TIME_FORMAT "%Y-%m-%dT%H:%M:%SZ"
+#define LINK "https://webservice.1prime.ru/pttable?host=1prime.ru&encoding=utf-8&template=prime_fxcur_jsonp&time=16"
 
-class OnePrimeAPI : ExchangeAPI {
+class OnePrimeAPI {
     public:
         /**
          * @brief Construct a new OnePrimeAPI object
@@ -47,8 +47,15 @@ class OnePrimeAPI : ExchangeAPI {
 
     private:
 
+        void getJSON ();
+        
+
         string* currencies;
+        int* rate;
         int size;
+
+        CURL *curl;
+        CURLcode res;
 };
 
 

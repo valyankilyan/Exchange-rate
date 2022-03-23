@@ -1,19 +1,27 @@
 CC = g++
-FLAGS = -Wextra -Wall -g -c
+# FLAGS = -Wextra -Wall -g -c
+FLAGS = -lcurl -Wall -g -c
 DIR = src
-MODULES = ExchangeUnit.o
+MODULES = OnePrimeAPI.o main.o
 
 all: modules er clean
 
 er: main.o
-	$(CC) $(MODULES) -o er
+	$(CC) $(MODULES) -lcurl -o er
 
-modules: ExchangeUnit.o
+main.o: modules
+	$(CC) $(FLAGS) $(DIR)/main.cpp
+
+modules: $(MODULES)
 	@echo "Modules compiled"
 
 ExchangeUnit.o:
 	@echo "ExchangeUnit.o"
 	$(CC) $(FLAGS) $(DIR)/ExchangeUnit.cpp
+
+OnePrimeAPI.o:
+	@echo "OnePrimeAPI.o"
+	$(CC) $(FLAGS) $(DIR)/OnePrimeAPI.cpp
 
 clean:
 	rm -f $(MODULES)
