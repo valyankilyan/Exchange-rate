@@ -72,7 +72,7 @@
         ExchangeUnit* table
     }
 
-    class ExchangeAPI {
+    class CurrentExchangeAPI {
         getCurrencies(string* currencies, int* size)
         int getRate()
         int getRage(datetime)
@@ -82,7 +82,7 @@
         TinkoffAPI(string token)
     }
 
-    ExchangeAPI --> TinkoffAPI
+    CurrentExchangeAPI --> TinkoffAPI
     
 
     ExchangeUnit --o ExchangeTable : table

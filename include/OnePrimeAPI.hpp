@@ -1,7 +1,7 @@
 #ifndef ONEPRIME_API
 #define ONEPRIME_API
 
-// #include "ExchangeAPI.hpp"
+#include "CurrentExchangeAPI.hpp"
 #include <string>
 #include <curl/curl.h>
 
@@ -9,12 +9,11 @@ using namespace std;
 
 #define LINK "https://webservice.1prime.ru/pttable?host=1prime.ru&encoding=utf-8&template=prime_fxcur_jsonp&time=16"
 
-class OnePrimeAPI {
+class OnePrimeAPI : CurrentExchangeAPI {
     public:
         /**
          * @brief Construct a new OnePrimeAPI object
          * 
-         * @param token 
          */
         OnePrimeAPI();
 
@@ -34,16 +33,6 @@ class OnePrimeAPI {
          * @param size 
          */
         void getRate(string* currencies, int* rate, int size);
-
-        /**
-         * @brief Get the Rate of all Currencies at exact time
-         * 
-         * @param currencies 
-         * @param rate 
-         * @param size 
-         * @param datetime 
-         */
-        void getRate(string* currencies, int* rate, int size, time_t datetime);
 
     private:
 

@@ -16,10 +16,6 @@ void OnePrimeAPI::getRate(string* currencies, int* rate, int size){
     
 }
 
-void OnePrimeAPI::getRate(string* currencies, int* rate, int size, time_t datetime){
-    
-}
-
 void OnePrimeAPI::getJSON() {
     if (curl) {
         curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);

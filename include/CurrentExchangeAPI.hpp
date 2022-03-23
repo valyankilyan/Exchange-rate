@@ -5,15 +5,17 @@
 #include <string>
 using namespace std;
 
-class ExchangeAPI {
+class CurrentExchangeAPI {
    public:
+    CurrentExchangeAPI(){}
+
     /**
      * @brief Get the array of Currencies strings
      *
      * @param currencies
      * @param size
      */
-    virtual void getCurrencies(string* currencies, int size);
+    virtual void getCurrencies(string* currencies, int size){}
 
     /**
      * @brief Get the Rate of all Currencies
@@ -22,17 +24,7 @@ class ExchangeAPI {
      * @param rate
      * @param size
      */
-    virtual void getRate(string* currencies, int* rate, int size);
-
-    /**
-     * @brief Get the Rate of all Currencies at exact times
-     *
-     * @param currencies
-     * @param rate
-     * @param size
-     * @param datetime
-     */
-    virtual void getRate(string* currencies, int* rate, int size, time_t datetime);
+    virtual void getRate(string* currencies, int* rate, int size){}
 
    protected:
     string* currencies;

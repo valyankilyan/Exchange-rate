@@ -2,12 +2,12 @@ CC = g++
 # FLAGS = -Wextra -Wall -g -c
 FLAGS = -lcurl -Wall -g -c
 DIR = src
-MODULES = OnePrimeAPI.o main.o
+MODULES = OnePrimeAPI.o
 
 all: modules er clean
 
 er: main.o
-	$(CC) $(MODULES) -lcurl -o er
+	$(CC) $(MODULES) main.o -lcurl -o er
 
 main.o: modules
 	$(CC) $(FLAGS) $(DIR)/main.cpp
