@@ -36,7 +36,7 @@ class OnePrimeAPI : CurrentExchangeAPI {
 
     private:
 
-        void getJSON ();
+        void getJSON (string *response_string);
         
 
         string* currencies;
@@ -44,7 +44,6 @@ class OnePrimeAPI : CurrentExchangeAPI {
         int size;
 
         CURL *curl;
-        CURLcode res;
 };
 
 
