@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define TIME_FORMAT ""
+#define TIME_FORMAT "%Y-%m-%dT%H:%M:%SZ"
 
 class TinkoffAPI : ExchangeAPI {
     public:
