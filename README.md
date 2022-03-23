@@ -74,15 +74,14 @@
 
     class ExchangeAPI {
         getCurrencies(string* currencies, int* size)
-        int getRate(string currency)
+        int getRate()
+        int getRage(datetime)
     }
 
     class TinkoffAPI {
         TinkoffAPI(string token)
     }
 
-    included_JSON --> ExchangeAPI 
-    included_libcurl --> ExchangeAPI
     ExchangeAPI --> TinkoffAPI
     
 

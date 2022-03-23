@@ -1,0 +1,19 @@
+{
+  "id": "42387b55-caca-4967-9090-f2a69fe5f244",
+  "importStreams": [
+    {
+      "id": "1d929fd7-f1eb-4db1-9d4e-50d941681dd6",
+      "name": "TINKOFF INVEST API",
+      "importerName": "ProtoFile",
+      "createMissingOperations": true,
+      "options": {
+        "files": [
+          "../investAPI/src/docs/contracts"
+        ],
+        "importPaths": []
+      }
+    }
+  ],
+  "authConfigs": [],
+  "certificates": []
+}
