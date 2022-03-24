@@ -34,6 +34,14 @@ class CurrentExchangeUnit {
      */
     void getCurrencies(string** currencies, int* size);
 
+
+    /**
+     * @brief Get the Time object
+     * 
+     * @return time_t 
+     */
+    time_t getTime();
+
    private:
 
     void request_rates();
