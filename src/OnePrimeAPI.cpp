@@ -8,33 +8,50 @@ OnePrimeAPI::OnePrimeAPI(){
     currencies = NULL;
     rate = NULL;
 
-    curl_global_init(CURL_GLOBAL_DEFAULT);
-    curl = curl_easy_init();
-    curl_easy_setopt(curl, CURLOPT_URL, LINK);
+    updateData();
+}
 
-    string response_string;
-    getJSON(&response_string); 
-    // cout << response_string;
-
-    json j = json::parse(response_string);
-    updateData(&j);
+OnePrimeAPI::~OnePrimeAPI() {
+    curl_easy_cleanup(curl);
+    delete[] currencies;\
+    delete[] rate;
 }
         
-void OnePrimeAPI::getCurrencies(string* currencies, int size){
-    
+void OnePrimeAPI::getCurrencies(string** currencies, int *size){
+    string* temp = new string[this->size];
+    for (int i = 0; i < this->size; i++) {
+        temp[i] = this->currencies[i];
+    }
+    *currencies = temp;
+    *size = this->size;
 }
 
-void OnePrimeAPI::getRate(string* currencies, int* rate, int size){
-    
+void OnePrimeAPI::getRate(string** currencies, Rate** rate, int *size){
+    updateData();
+    string* tempc = new string[this->size];
+    Rate* tempr = new Rate[this->size];
+    *size = this->size;
+    for (int i = 0; i < this->size; i++) {
+        tempc[i] = this->currencies[i];
+    }
+
+    for (int i = 0; i < this->size; i++) {
+        tempr[i] = this->rate[i];
+    }
+
+    *currencies = tempc;
+    *rate = tempr;
 }
 
 void OnePrimeAPI::getJSON(string *response_string) {
+    curl_global_init(CURL_GLOBAL_DEFAULT);
+    curl = curl_easy_init();
+    curl_easy_setopt(curl, CURLOPT_URL, LINK);
     if (curl) {
         curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeFunction);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, response_string);
         curl_easy_perform(curl);
-        curl_easy_cleanup(curl);
     } else {
         cerr << "curl wasn't inited\n";
     }
@@ -45,24 +62,22 @@ size_t writeFunction(void *ptr, size_t size, size_t nmemb, string* data) {
     return size * nmemb;
 }
 
-void OnePrimeAPI::updateData(json* j) {
+void OnePrimeAPI::updateData() {
+    string response_string;
+    getJSON(&response_string); 
+
+    json j = json::parse(response_string);
+
     delete [] currencies;
     delete [] rate;
-    size = j->size();
+    size = j.size();
     currencies = new string[size];
     rate = new Rate[size];
 
-    cout << "json.size() = " << j->size() << endl;
-    // cout << j[0]["date"] << " " << j[1] << endl;
-
     int id = 0;
-    for (json::iterator it = j->begin(); it != j->end(); it++, id++) {
-        currencies[id] = (*it)["name"];
+    for (json::iterator it = j.begin(); it != j.end(); it++, id++) {
+        currencies[id] = (*it)["id"];
         rate[id] = Rate((*it)["value"].dump());
-    }
-
-    for (int i = 0; i < size; i++) {
-        cout << currencies[i] << ": " << rate[i] << endl;
     }
 }
 

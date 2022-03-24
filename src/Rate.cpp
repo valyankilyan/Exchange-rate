@@ -136,6 +136,8 @@ void Rate::Serialize() {
         temp -= digit * mpw;
         mpw /= 10;
     }
+
+    serialized = 1;
 }
 
 void Rate::typeError() {

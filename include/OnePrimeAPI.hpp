@@ -22,12 +22,18 @@ class OnePrimeAPI : CurrentExchangeAPI {
         OnePrimeAPI();
 
         /**
+         * @brief Destroy the One Prime Api object
+         * 
+         */
+        ~OnePrimeAPI();
+
+        /**
          * @brief Get all names of Currencies
          * 
          * @param currencies 
          * @param size 
          */
-        void getCurrencies(string* currencies, int size);
+        void getCurrencies(string** currencies, int *size);
 
         /**
          * @brief Get present Rate of all Currencies
@@ -36,12 +42,12 @@ class OnePrimeAPI : CurrentExchangeAPI {
          * @param rate 
          * @param size 
          */
-        void getRate(string* currencies, int* rate, int size);
+        void getRate(string** currencies, Rate** rate, int *size);
 
     private:
 
         void getJSON (string *response_string);
-        void updateData(json* j);
+        void updateData();
 
         string* currencies;
         Rate* rate;
