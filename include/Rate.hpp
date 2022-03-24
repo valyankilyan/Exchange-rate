@@ -33,7 +33,15 @@ class Rate {
      * @param u 
      * @param m 
      */
-    Rate(unsigned int u, unsigned int m);
+    Rate(int u, int m);
+
+    /**
+     * @brief Construct a new Rate object from long double variables
+     * 
+     * @param u 
+     * @param m 
+     */
+    Rate(long double u, long double m);
 
     /**
      * @brief Get the Units object

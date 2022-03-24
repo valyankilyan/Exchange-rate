@@ -12,10 +12,20 @@ Rate::Rate(string _str) {
     Deserialize();
 }
 
-Rate::Rate(unsigned int u, unsigned int m) {
+Rate::Rate(int u, int m) {
     serialized = 0;
     units = u;
     mill = m;
+}
+
+Rate::Rate(long double u, long double m) {
+    units = u;
+    cerr << "u = " << u << " u * milllen = " << (int)(u * RATE_MOD) << endl;
+    cerr << " ostatok = " << ((int)(u * RATE_MOD) % RATE_MOD) << endl;
+    mill = (int)m + (int)(u * RATE_MOD) % RATE_MOD;
+    units+= (mill / RATE_MOD);
+    mill%= RATE_MOD;
+    serialized = 0;
 }
 
 int Rate::getUnits() {
