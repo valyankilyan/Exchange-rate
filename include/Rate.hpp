@@ -14,17 +14,52 @@ using namespace std;
 class Rate {
     public:
 
+    /**
+     * @brief Construct a new Rate object
+     * 
+     */
     Rate();
+
+    /**
+     * @brief Construct a new Rate object from rate string
+     * 
+     * @param str 
+     */
     Rate(string str);
+
+    /**
+     * @brief Construct a new Rate object from units and milli variables
+     * 
+     * @param u 
+     * @param m 
+     */
     Rate(unsigned int u, unsigned int m);
 
+    /**
+     * @brief Get the Units object
+     * 
+     * @return int 
+     */
     int getUnits();
+
+    /**
+     * @brief Get the Mill object
+     * 
+     * @return int 
+     */
     int getMill();
 
+
+    /**
+     * @brief returns string representation of rate
+     * 
+     * @param os 
+     * @param rate 
+     * @return ostream& 
+     */
     friend ostream& operator<<(ostream& os, Rate& rate);
 
     Rate operator+(const Rate &b);
-
     bool operator<(const Rate &b);
     bool operator>(const Rate &b);
     bool operator==(const Rate &b);
@@ -33,9 +68,22 @@ class Rate {
 
     private:
 
+    /**
+     * @brief Deserializes from string object
+     * 
+     */
     void Deserialize();
+
+    /**
+     * @brief Serializes from units and milli objects 
+     * 
+     */
     void Serialize();
 
+    /**
+     * @brief prints type error
+     * I didn' want to learn how to make proper exceptions
+     */
     void typeError();
 
     int units;

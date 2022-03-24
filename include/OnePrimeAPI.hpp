@@ -46,7 +46,17 @@ class OnePrimeAPI : CurrentExchangeAPI {
 
     private:
 
+        /**
+         * @brief gives JSON data from oneprime request
+         * 
+         * @param response_string 
+         */
         void getJSON (string *response_string);
+
+        /**
+         * @brief updates data to the latest one
+         * 
+         */
         void updateData();
 
         string* currencies;
