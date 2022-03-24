@@ -24,4 +24,4 @@ OnePrimeAPI.o:
 	$(CC) $(FLAGS) $(DIR)/OnePrimeAPI.cpp
 
 clean:
-	rm -f $(MODULES)
+	rm -f $(MODULES) main.o
