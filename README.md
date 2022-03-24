@@ -39,8 +39,8 @@
 ## Архитектура 
 ``` mermaid
     classDiagram
-    class  ExchangeUnit {
-        ExchangeUnit()
+    class  CurrentExchangeUnit {
+        CurrentExchangeUnit()
         ExhangeUnit(time_t time)
 
         getRate(string rcurrency)
@@ -69,7 +69,7 @@
         time_t end
         time_t delta = 10
         int size
-        ExchangeUnit* table
+        CurrentExchangeUnit* table
     }
 
     class CurrentExchangeAPI {
@@ -85,5 +85,5 @@
     CurrentExchangeAPI --> TinkoffAPI
     
 
-    ExchangeUnit --o ExchangeTable : table
+    CurrentExchangeUnit --o ExchangeTable : table
 ```

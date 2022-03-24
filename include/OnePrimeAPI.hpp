@@ -13,7 +13,7 @@ using namespace std;
 
 #define LINK "https://webservice.1prime.ru/pttable?host=1prime.ru&encoding=utf-8&template=prime_fxcur_jsonp&time=16"
 
-class OnePrimeAPI : CurrentExchangeAPI {
+class OnePrimeAPI : public CurrentExchangeAPI {
     public:
         /**
          * @brief Construct a new OnePrimeAPI object

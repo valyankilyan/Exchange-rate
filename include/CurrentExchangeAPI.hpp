@@ -18,7 +18,7 @@ class CurrentExchangeAPI {
      * @param currencies
      * @param size
      */
-    virtual void getCurrencies(string* currencies, int size) {}
+    virtual void getCurrencies(string** currencies, int *size) {}
 
     /**
      * @brief Get the Rate of all Currencies
@@ -27,7 +27,7 @@ class CurrentExchangeAPI {
      * @param rate
      * @param size
      */
-    virtual void getRate(string* currencies, int* rate, int size) {}
+    virtual void getRate(string** currencies, Rate** rate, int *size) {}
 
    protected:
     string* currencies;
