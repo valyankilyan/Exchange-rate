@@ -27,6 +27,15 @@ class CurrentExchangeUnit {
     Rate getRate(string rcurrency);
     
     /**
+     * @brief Get the Rates for all currencies
+     * 
+     * @param currencies 
+     * @param rate 
+     * @param size 
+     */
+    void getAllRates(string** currencies, Rate** rate, int *size);
+
+    /**
      * @brief Get the Currencies list and its size
      * 
      * @param currencies string array with names of currencies

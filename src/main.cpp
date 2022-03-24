@@ -4,6 +4,8 @@
 #include "../include/OnePrimeAPI.hpp"
 #include "../include/CurrentExchangeUnit.hpp"
 
+#define DELTA 10
+
 using namespace std;
 
 int main() {

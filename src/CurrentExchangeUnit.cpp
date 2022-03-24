@@ -31,6 +31,11 @@ Rate CurrentExchangeUnit::getRate(string rcurrency) {
     }
 }
 
+void CurrentExchangeUnit::getAllRates(string** currencies, Rate** rate, int *size) {
+    api->getRate(currencies, rate, size);
+}
+
+
 time_t CurrentExchangeUnit::getTime() {
     return rtime;
 }
