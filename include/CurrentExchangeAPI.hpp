@@ -3,18 +3,10 @@
 
 #include <ctime>
 #include <string>
+
+#include "../include/Rate.hpp"
 using namespace std;
 
-struct Rate {
-    int units;
-    int mill;
-    string str;
-
-    friend ostream& operator<<(ostream& os, const Rate& rate) {
-        os << rate.str;
-        return os;
-    }
-};
 
 class CurrentExchangeAPI {
    public:
@@ -39,6 +31,7 @@ class CurrentExchangeAPI {
 
    protected:
     string* currencies;
+    Rate* rate;
     int size;
 };
 

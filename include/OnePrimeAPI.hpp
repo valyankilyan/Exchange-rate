@@ -42,7 +42,6 @@ class OnePrimeAPI : CurrentExchangeAPI {
 
         void getJSON (string *response_string);
         void updateData(json* j);
-        void rateDeserialize(Rate *rate);
 
         string* currencies;
         Rate* rate;
