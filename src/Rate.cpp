@@ -18,6 +18,14 @@ Rate::Rate(unsigned int u, unsigned int m) {
     mill = m;
 }
 
+int Rate::getUnits() {
+    return units;
+}
+
+int Rate::getMill() {
+    return mill;
+}
+
 ostream& operator<<(ostream& os, Rate& rate) {
     if (!rate.serialized) {
         rate.Serialize();
@@ -32,6 +40,33 @@ Rate Rate::operator+(const Rate& b) {
     temp.units += b.units + b.mill / RATE_MOD;
     temp.mill %= RATE_MOD;
     return temp;
+}
+
+bool Rate::operator<(const Rate &b) {
+    bool ans = this->units < b.units;
+    if (this->units == b.units) {
+        ans = this->mill < b.mill;
+    }
+    return ans;
+}
+
+bool Rate::operator>(const Rate &b) {
+    bool ans = this->units > b.units;
+    if (this->units == b.units) {
+        ans = this->mill > b.mill;
+    }
+    return ans;
+}
+
+bool Rate::operator==(const Rate &b) {
+    return this->units == b.units && this->mill == b.mill;
+}
+
+bool Rate::operator<=(const Rate &b) {
+    return operator<(b) || operator==(b);
+}
+bool Rate::operator>=(const Rate &b) {
+    return operator>(b) || operator==(b);
 }
 
 void Rate::Deserialize() {
@@ -57,8 +92,8 @@ void Rate::Deserialize() {
     for (size_t i = dot - 1; i != (size_t)-1; i--, pw *= 10) {
         units += pw * (str[i] - '0');
     }
-    pw = RATE_MOD;
-    for (size_t i = dot + 1; i <= str.size() && pw > 0; i++, pw /= 10) {
+    pw = RATE_MOD / 10;
+    for (size_t i = dot + 1; i < str.size() && pw > 0; i++, pw /= 10) {
         mill += pw * (str[i] - '0');
     }
 }
@@ -104,7 +139,6 @@ void Rate::Serialize() {
 }
 
 void Rate::typeError() {
-    cerr << "#TYPE ERROR: number required, but " << str << " given\n";
     str = "0.0";
     return;
 }

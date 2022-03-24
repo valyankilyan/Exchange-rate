@@ -18,9 +18,18 @@ class Rate {
     Rate(string str);
     Rate(unsigned int u, unsigned int m);
 
+    int getUnits();
+    int getMill();
+
     friend ostream& operator<<(ostream& os, Rate& rate);
 
     Rate operator+(const Rate &b);
+
+    bool operator<(const Rate &b);
+    bool operator>(const Rate &b);
+    bool operator==(const Rate &b);
+    bool operator<=(const Rate &b);
+    bool operator>=(const Rate &b);
 
     private:
 
