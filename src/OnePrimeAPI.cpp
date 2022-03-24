@@ -50,7 +50,7 @@ void OnePrimeAPI::updateData(json* j) {
     delete [] rate;
     size = j->size();
     currencies = new string[size];
-    rate = new int[size];
+    rate = new Rate[size];
 
     cout << "json.size() = " << j->size() << endl;
     // cout << j[0]["date"] << " " << j[1] << endl;
@@ -58,8 +58,11 @@ void OnePrimeAPI::updateData(json* j) {
     int id = 0;
     for (json::iterator it = j->begin(); it != j->end(); it++, id++) {
         currencies[id] = (*it)["name"];
+        string rate = (*it)["value"].dump();
+        cout << rate << endl;
         // rate[id] = (*it)["value"];
         cout << typeid((*it)["value"]).name() << endl;
+
         // cout << (*it) << endl;
         // cout << currencies[id] << ": " << rate[id] << endl;
     }
@@ -67,3 +70,19 @@ void OnePrimeAPI::updateData(json* j) {
     //     cout << j[i] << " ";
     // }
 }
+
+void OnePrimeAPI::writeToUnits(Rate *r) {
+    size_t dot = -1;
+    for (int i = 0; i < r->str.size(); i++) {
+        if (r->str[i] == '.') {
+            if (dot != -1) {
+                cerr << "#TYPE ERROR: number required, but " << r->str << " given\n";
+                r->units = 0;
+                r->mill = 0;
+                return;
+            }
+            dot = i;
+        }
+    }
+}
+

@@ -42,10 +42,10 @@ class OnePrimeAPI : CurrentExchangeAPI {
 
         void getJSON (string *response_string);
         void updateData(json* j);
+        void writeToUnits(Rate *rate);
 
         string* currencies;
-        int* rate;
-        int* precision
+        Rate* rate;
         int size;
 
         CURL *curl;

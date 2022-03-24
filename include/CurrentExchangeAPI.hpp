@@ -5,6 +5,12 @@
 #include <string>
 using namespace std;
 
+struct Rate {
+    int units;
+    int mill;
+    string str;
+};
+
 class CurrentExchangeAPI {
    public:
     CurrentExchangeAPI(){}
