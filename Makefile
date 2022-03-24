@@ -2,7 +2,7 @@ CC = g++
 # FLAGS = -Wextra -Wall -g -c
 FLAGS = -lcurl -Wall -g -c
 DIR = src
-MODULES = OnePrimeAPI.o
+MODULES = Rate.o OnePrimeAPI.o
 
 all: modules er clean
 
@@ -22,6 +22,11 @@ ExchangeUnit.o:
 OnePrimeAPI.o:
 	@echo "OnePrimeAPI.o"
 	$(CC) $(FLAGS) $(DIR)/OnePrimeAPI.cpp
+
+Rate.o:
+	@echo "Rate.o"
+	$(CC) $(FLAGS) $(DIR)/Rate.cpp
+
 
 clean:
 	rm -f $(MODULES) main.o
