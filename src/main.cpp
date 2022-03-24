@@ -25,4 +25,21 @@ int main() {
     cu->getCurrencies(&curr, &size);
     Rate rat = cu->getRate(curr[0]);
     cout << "cu get rate = " << rat << endl;
+    
+    Rate a1 = Rate("123.9456");
+    Rate a2 = Rate("234567.422225");
+    
+    Rate dans = a1 + a2;
+    Rate ans = (a1 + a2) / 2;
+    cout << a1 << " + " << a2 << " = " << dans << endl;
+    cout << "ans = " << ans << endl;
+
+    Rate b1 = Rate("2.2");
+    Rate b2 = Rate("1.1");
+    Rate bns = (b1 + b2) / 2;
+    cout << bns << endl;
+
+    // cout << "dr = " << dr;
+
+
 }

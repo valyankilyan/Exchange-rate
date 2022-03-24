@@ -1,5 +1,5 @@
-#ifndef CURRENTECHANGE_UNIT
-#define CURRENTECHANGE_UNIT
+#ifndef CURRENTECHANGEUNIT_H
+#define CURRENTECHANGEUNIT_H
 
 #include "../include/CurrentExchangeAPI.hpp"
 #include <ctime>
