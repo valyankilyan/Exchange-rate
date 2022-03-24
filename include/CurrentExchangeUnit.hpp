@@ -15,12 +15,14 @@ class CurrentExchangeUnit {
      */
     CurrentExchangeUnit(CurrentExchangeAPI* api);
 
+    ~CurrentExchangeUnit();
+
     /**
      * @brief Get the Rate
      * for ruble related to <rcurrency>
      * 
      * @param rcurrency name of currency ruble related to 
-     * @return int rate * 10^4
+     * @return Rate rate;
      */
     Rate getRate(string rcurrency);
     

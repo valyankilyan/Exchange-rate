@@ -7,6 +7,11 @@ CurrentExchangeUnit::CurrentExchangeUnit(CurrentExchangeAPI* api) {
     rtime = time(0);
 }
 
+CurrentExchangeUnit::~CurrentExchangeUnit() {
+    delete[] currencies;
+    delete[] rate;
+}
+
 void CurrentExchangeUnit::getCurrencies(string** currencies, int* size) {
     *size = this->size;
     string* temp = new string[this->size];
