@@ -18,16 +18,6 @@ Rate::Rate(int u, int m) {
     mill = m;
 }
 
-Rate::Rate(long double u, long double m) {
-    units = u;
-    cerr << "u = " << u << " u * milllen = " << (int)(u * RATE_MOD) << endl;
-    cerr << " ostatok = " << ((int)(u * RATE_MOD) % RATE_MOD) << endl;
-    mill = (int)m + (int)(u * RATE_MOD) % RATE_MOD;
-    units+= (mill / RATE_MOD);
-    mill%= RATE_MOD;
-    serialized = 0;
-}
-
 int Rate::getUnits() {
     return units;
 }
@@ -46,9 +36,20 @@ ostream& operator<<(ostream& os, Rate& rate) {
 
 Rate Rate::operator+(const Rate& b) {
     Rate temp = *this;
+    temp.serialized = 0;
     temp.mill += b.mill;
-    temp.units += b.units + b.mill / RATE_MOD;
+    temp.units += b.units + temp.mill / RATE_MOD;
     temp.mill %= RATE_MOD;
+    return temp;
+}
+
+Rate Rate::operator/(const int d) {
+    long double u = units;
+    long double m = mill;
+    u/= d;
+    m/= d;
+    Rate temp = Rate();
+    temp.from_long_double(u, m);
     return temp;
 }
 
@@ -148,6 +149,14 @@ void Rate::Serialize() {
     }
 
     serialized = 1;
+}
+
+void Rate::from_long_double(long double u, long double m) {
+    units = u;
+    mill = (long long)m + (long long)(u * RATE_MOD) % RATE_MOD;
+    units+= (mill / RATE_MOD);
+    mill%= RATE_MOD;
+    serialized = 0;
 }
 
 void Rate::typeError() {

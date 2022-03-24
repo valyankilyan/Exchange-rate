@@ -36,14 +36,6 @@ class Rate {
     Rate(int u, int m);
 
     /**
-     * @brief Construct a new Rate object from long double variables
-     * 
-     * @param u 
-     * @param m 
-     */
-    Rate(long double u, long double m);
-
-    /**
      * @brief Get the Units object
      * 
      * @return int 
@@ -68,6 +60,8 @@ class Rate {
     friend ostream& operator<<(ostream& os, Rate& rate);
 
     Rate operator+(const Rate &b);
+    Rate operator/(const int d);
+    
     bool operator<(const Rate &b);
     bool operator>(const Rate &b);
     bool operator==(const Rate &b);
@@ -93,6 +87,14 @@ class Rate {
      * I didn' want to learn how to make proper exceptions
      */
     void typeError();
+
+    /**
+     * @brief makes Rate from long double units and long double mills
+     * 
+     * @param u 
+     * @param m 
+     */
+    void from_long_double(long double u, long double m);
 
     int units;
     int mill;
