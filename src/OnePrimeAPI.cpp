@@ -1,5 +1,9 @@
 #include "../include/OnePrimeAPI.hpp"
+#include "../json/single_include/nlohmann/json.hpp"
+// #include <nlohmann/json.hpp>
 #include <iostream>
+
+using json = nlohmann::json;
 
 size_t writeFunction(void *ptr, size_t size, size_t nmemb, string* data);
          
@@ -9,8 +13,11 @@ OnePrimeAPI::OnePrimeAPI(){
     curl_easy_setopt(curl, CURLOPT_URL, LINK);
 
     string response_string;
-    getJSON(&response_string);
-    cout << response_string;
+    getJSON(&response_string); 
+    // cout << response_string;
+
+    json j = response_string;
+    cout << j.dump();
 }
         
 void OnePrimeAPI::getCurrencies(string* currencies, int size){

@@ -1,3 +1,6 @@
 [submodule "investAPI"]
 	path = investAPI
 	url = https://github.com/Tinkoff/investAPI.git
+[submodule "json"]
+	path = json
+	url = https://github.com/nlohmann/json.git
