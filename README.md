@@ -53,9 +53,9 @@
         map <string, int> rate;
     }
 
-    class CurrentExchangeTable {
-        CurrentExchangeTable(left_time, right_time)
-        CurrentExchangeTable(left_time, right_time, delta)
+    class CurrentSillyExchangeTable {
+        CurrentSillyExchangeTable(left_time, right_time)
+        CurrentSillyExchangeTable(left_time, right_time, delta)
 
         string raw()
         string raw(string currency)
@@ -85,5 +85,5 @@
     CurrentExchangeAPI --> TinkoffAPI
     
 
-    CurrentExchangeUnit --o CurrentExchangeTable : table
+    CurrentExchangeUnit --o CurrentSillyExchangeTable : table
 ```

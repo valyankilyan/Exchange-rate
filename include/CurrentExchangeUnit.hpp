@@ -27,21 +27,20 @@ class CurrentExchangeUnit {
     Rate getRate(string rcurrency);
     
     /**
-     * @brief Get the Rates for all currencies
+     * @brief Get the All Rates object
      * 
-     * @param currencies 
-     * @param rate 
      * @param size 
+     * @return Rate* 
      */
-    void getAllRates(string** currencies, Rate** rate, int *size);
+    Rate* getAllRates(int *size);
 
     /**
-     * @brief Get the Currencies list and its size
+     * @brief Get the Currencies object
      * 
-     * @param currencies string array with names of currencies
-     * @param size count of all the currencies CB gave
+     * @param size 
+     * @return string* 
      */
-    void getCurrencies(string** currencies, int* size);
+    string* getCurrencies(int* size);
 
 
     /**

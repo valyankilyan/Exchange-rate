@@ -12,13 +12,13 @@ CurrentExchangeUnit::~CurrentExchangeUnit() {
     delete[] rate;
 }
 
-void CurrentExchangeUnit::getCurrencies(string** currencies, int* size) {
+string* CurrentExchangeUnit::getCurrencies(int* size) {
     *size = this->size;
     string* temp = new string[this->size];
     for (int i = 0; i < this->size; i++) {
         temp[i] = this->currencies[i];        
     }
-    *currencies = temp;
+    return temp;
 }
  
 Rate CurrentExchangeUnit::getRate(string rcurrency) {
@@ -31,8 +31,13 @@ Rate CurrentExchangeUnit::getRate(string rcurrency) {
     }
 }
 
-void CurrentExchangeUnit::getAllRates(string** currencies, Rate** rate, int *size) {
-    api->getRate(currencies, rate, size);
+Rate* CurrentExchangeUnit::getAllRates(int *size) {
+    *size = this->size;
+    Rate* temp = new Rate[this->size];
+    for (int i = 0; i < this->size; i++) {
+        temp[i] = this->rate[i];
+    }  
+    return temp;
 }
 
 
