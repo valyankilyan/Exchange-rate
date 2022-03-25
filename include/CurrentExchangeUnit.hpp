@@ -49,6 +49,14 @@ class CurrentExchangeUnit {
      * @return time_t 
      */
     time_t getTime();
+    
+    /**
+     * @brief get currency rate by its name
+     * 
+     * @param rcurrenciy 
+     * @return Rate 
+     */
+    Rate operator[](string rcurrenciy);
 
    private:
 

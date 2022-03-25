@@ -20,6 +20,7 @@ string* CurrentExchangeUnit::getCurrencies(int* size) {
     }
     return temp;
 }
+
  
 Rate CurrentExchangeUnit::getRate(string rcurrency) {
     int ind = 0;
@@ -29,6 +30,10 @@ Rate CurrentExchangeUnit::getRate(string rcurrency) {
     } else {
         return rate[ind];
     }
+}
+
+Rate CurrentExchangeUnit::operator[](string rcurrency) {
+    return getRate(rcurrency);
 }
 
 Rate* CurrentExchangeUnit::getAllRates(int *size) {
