@@ -57,6 +57,25 @@ class CurrentExchangeUnit {
      * @return Rate 
      */
     Rate operator[](string rcurrenciy);
+    
+    /**
+     * @brief get Rate object by it's number
+     * 
+     * @param num 
+     * @return Rate 
+     */
+    Rate operator[](size_t num);
+
+    CurrentExchangeUnit operator+(const CurrentExchangeUnit &b);
+    void operator+=(const CurrentExchangeUnit &b);
+    CurrentExchangeUnit operator/(int d);
+    void operator/=(int d);
+
+    friend ostream& operator<<(ostream& os, CurrentExchangeUnit &ceu);
+
+
+
+    // CurrentExchangeUnit operator=(const CurrentExchangeUnit &b);
 
    private:
 

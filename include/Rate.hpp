@@ -15,7 +15,7 @@ class Rate {
     public:
 
     /**
-     * @brief Construct a new Rate object
+     * @brief Construct a new empty Rate object
      * 
      */
     Rate();
@@ -61,7 +61,8 @@ class Rate {
 
     Rate operator+(const Rate &b);
     void operator+=(const Rate &b);
-    Rate operator/(const int d);
+    Rate operator/(int d);
+    void operator/=(int d);
     
     bool operator<(const Rate &b);
     bool operator>(const Rate &b);

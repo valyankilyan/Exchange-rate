@@ -22,7 +22,7 @@ int main() {
     }
 
     CurrentExchangeUnit* cu = new CurrentExchangeUnit(api);
-    cu->getCurrencies(&curr, &size);
+    curr = cu->getCurrencies(&size);
     Rate rat = cu->getRate(curr[0]);
     cout << "cu get rate = " << rat << endl;
     
@@ -38,6 +38,13 @@ int main() {
     Rate b2 = Rate("1.1");
     Rate bns = (b1 + b2) / 2;
     cout << bns << endl;
+
+    CurrentExchangeUnit* cu1 = new CurrentExchangeUnit(api);
+
+    (*cu)+= *cu1;
+    cout << (*cu) << endl;
+    (*cu)/= 2;
+    cout << (*cu) << endl;
 
     // cout << "dr = " << dr;
 

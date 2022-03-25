@@ -50,7 +50,7 @@ void Rate::operator+=(const Rate& b) {
     this->mill %= RATE_MOD;
 }
 
-Rate Rate::operator/(const int d) {
+Rate Rate::operator/(int d) {
     long double u = units;
     long double m = mill;
     u/= d;
@@ -58,6 +58,19 @@ Rate Rate::operator/(const int d) {
     Rate temp = Rate();
     temp.from_long_double(u, m);
     return temp;
+}
+
+void Rate::operator/=(int d) {
+    long double u = units;
+    long double m = mill;
+    u/= d;
+    m/= d;
+    Rate temp = Rate();
+    units = u;
+    mill = (long long)m + (long long)(u * RATE_MOD) % RATE_MOD;
+    units+= (mill / RATE_MOD);
+    mill%= RATE_MOD;
+    serialized = 0;
 }
 
 bool Rate::operator<(const Rate &b) {
