@@ -1,10 +1,14 @@
 #include <ctime>
 #include <string>
 #include <iostream>
+#include <chrono>
+#include <thread>
 #include "../include/OnePrimeAPI.hpp"
 #include "../include/CurrentExchangeUnit.hpp"
+#include "../include/SillyExchangeTable.hpp"
 
 #define DELTA 10
+#define COUNT 3
 
 using namespace std;
 
@@ -13,11 +17,11 @@ int main() {
 
     Rate* r = NULL;
     string* curr = NULL;
-    int size = 0;
+    size_t size = 0;
 
     api->getRate(&curr, &r, &size);
 
-    for (int i = 0; i < size; i++) {
+    for (size_t i = 0; i < size; i++) {
         cout << curr[i] << ": " << r[i] << endl;
     }
 
@@ -45,6 +49,16 @@ int main() {
     cout << (*cu) << endl;
     (*cu)/= 2;
     cout << (*cu) << endl;
+
+    using namespace std::this_thread; // sleep_for, sleep_until
+    using namespace std::chrono; // nanoseconds, system_clock, seconds
+
+    SillyExchangeTable SET = SillyExchangeTable(api);
+
+    for (int i = 0; i < COUNT; i++) {
+        cout << SET.getLatest() << endl;
+        sleep_for(seconds(10));
+    }
 
     // cout << "dr = " << dr;
 

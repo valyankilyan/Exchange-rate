@@ -33,7 +33,7 @@ class OnePrimeAPI : public CurrentExchangeAPI {
          * @param currencies 
          * @param size 
          */
-        void getCurrencies(string** currencies, int *size);
+        void getCurrencies(string** currencies, size_t *size);
 
         /**
          * @brief Get present Rate of all Currencies
@@ -42,7 +42,7 @@ class OnePrimeAPI : public CurrentExchangeAPI {
          * @param rate 
          * @param size 
          */
-        void getRate(string** currencies, Rate** rate, int *size);
+        void getRate(string** currencies, Rate** rate, size_t *size);
 
     private:
 

@@ -32,7 +32,7 @@ class CurrentExchangeUnit {
      * @param size 
      * @return Rate* 
      */
-    Rate* getAllRates(int *size);
+    Rate* getAllRates(size_t *size);
 
     /**
      * @brief Get the Currencies object
@@ -40,7 +40,7 @@ class CurrentExchangeUnit {
      * @param size 
      * @return string* 
      */
-    string* getCurrencies(int* size);
+    string* getCurrencies(size_t* size);
 
 
     /**
@@ -50,13 +50,13 @@ class CurrentExchangeUnit {
      */
     time_t getTime();
     
-    /**
-     * @brief get currency rate by its name
-     * 
-     * @param rcurrenciy 
-     * @return Rate 
-     */
-    Rate operator[](string rcurrenciy);
+    // /**
+    //  * @brief get currency rate by its name
+    //  * 
+    //  * @param rcurrenciy 
+    //  * @return Rate 
+    //  */
+    // Rate operator[](string rcurrenciy);
     
     /**
      * @brief get Rate object by it's number
@@ -64,7 +64,7 @@ class CurrentExchangeUnit {
      * @param num 
      * @return Rate 
      */
-    Rate operator[](size_t num);
+    Rate& operator[](size_t num);
 
     CurrentExchangeUnit operator+(const CurrentExchangeUnit &b);
     void operator+=(const CurrentExchangeUnit &b);
@@ -73,9 +73,10 @@ class CurrentExchangeUnit {
 
     friend ostream& operator<<(ostream& os, CurrentExchangeUnit &ceu);
 
-
+    void _from_any_variables(size_t size, const string* currencies, const Rate* rate, CurrentExchangeAPI* api);
 
     // CurrentExchangeUnit operator=(const CurrentExchangeUnit &b);
+    
 
    private:
 
@@ -84,7 +85,7 @@ class CurrentExchangeUnit {
     // time of rates
     time_t rtime;
     // size of currencies
-    int size;
+    size_t size;
     // names of currencies
     string* currencies;
     // rate of currencies

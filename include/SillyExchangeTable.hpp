@@ -26,7 +26,7 @@ class SillyExchangeTable {
      * @param currencies string array with names of currencies
      * @param size count of all the currencies CB gave
      */
-    string* getCurrencies(int* size);
+    string* getCurrencies(size_t* size);
     
     /**
      * @brief makes request and adds it to the array
@@ -37,6 +37,13 @@ class SillyExchangeTable {
     void makeRequest();
 
     /**
+     * @brief make request and Get the Latest rates
+     * 
+     * @return CurrentExchangeUnit& 
+     */
+    CurrentExchangeUnit& getLatest();
+
+    /**
      * @brief returns CurrenExchangeUnit object
      * 
      * @param num 
@@ -44,32 +51,27 @@ class SillyExchangeTable {
      */
     CurrentExchangeUnit& operator[](size_t num);
 
-    /**
-     * @brief Get the Median Rates array
-     * 
-     * @param currencies 
-     * @param mrates 
-     * @param size 
-     * @return Rate 
-     */
-    Rate getMedianRates(string** currencies, Rate** mrates, int* size);
+    size_t size();
 
     /**
-     * @brief Get the Average Rates array
+     * @brief Get the Median Rates CEU
      * 
-     * @param currencies 
-     * @param arates 
-     * @param size 
-     * @return Rate 
+     * @return CurrentExchangeUnit 
      */
-    Rate getAverageRates(string** currencies, Rate** arates, int* size);
+    CurrentExchangeUnit getMedianRates();
+
+    /**
+     * @brief Get the Average Rates CEU
+     * 
+     * @return CurrentExchangeUnit 
+     */
+    CurrentExchangeUnit getAverageRates();
 
    private:
 
     void request_rates();
     
-    // size of Table
-    int size;
+    size_t currencies_size;
     // currencies
     string* currencies;
     // table rate of currencies

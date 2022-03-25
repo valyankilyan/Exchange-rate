@@ -17,7 +17,7 @@ OnePrimeAPI::~OnePrimeAPI() {
     delete[] rate;
 }
         
-void OnePrimeAPI::getCurrencies(string** currencies, int *size){
+void OnePrimeAPI::getCurrencies(string** currencies, size_t *size){
     string* temp = new string[this->size];
     for (int i = 0; i < this->size; i++) {
         temp[i] = this->currencies[i];
@@ -26,7 +26,7 @@ void OnePrimeAPI::getCurrencies(string** currencies, int *size){
     *size = this->size;
 }
 
-void OnePrimeAPI::getRate(string** currencies, Rate** rate, int *size){
+void OnePrimeAPI::getRate(string** currencies, Rate** rate, size_t *size){
     updateData();
     string* tempc = new string[this->size];
     Rate* tempr = new Rate[this->size];
