@@ -24,7 +24,7 @@
     - [ ] Продолжительное считывание курса
     - [ ] Курс валют за прошедшее время
     - [ ] Изменение диапазона
-- [ ] Поиск медианы и поиск медианы в реальном времени
+- [x] Поиск медианы и поиск среднего 
 - [ ] Поиск изменения с начала измерения в рублях и процентах от изначального 
 - [ ] Клиент
     - [ ] Парсинг времени из консоли в *time_t*
@@ -39,12 +39,21 @@
 ## Архитектура 
 ``` mermaid
     classDiagram
+
+    class CurrentExchangeAPI {
+        getCurrencies()
+        getRate()
+    }
+
+    class OnePrimeExchangeAPI {
+        getCurrencies()
+        getRate()
+    }
+
     class  CurrentExchangeUnit {
-        CurrentExchangeUnit()
-        ExhangeUnit(time_t time)
+        CurrentExchangeUnit(api)
 
         getRate(string rcurrency)
-        getRate(string currency, string rcurrency)
 
         void getCurrencies(string* currencies, int* size)
 
@@ -53,17 +62,10 @@
         map <string, int> rate;
     }
 
-    class CurrentSillyExchangeTable {
-        CurrentSillyExchangeTable(left_time, right_time)
-        CurrentSillyExchangeTable(left_time, right_time, delta)
-
-        string raw()
-        string raw(string currency)
-        string raw(string* currencies, int size)
-        string raw(string currency, string* currencies, int size)
-        cc
-
-        operator[ ]()
+    class SillyExchangeTable {
+        SillyExchangeTable()
+        makeRequest()
+        operator[]()
 
         time_t start
         time_t end
@@ -72,18 +74,13 @@
         CurrentExchangeUnit* table
     }
 
-    class CurrentExchangeAPI {
-        getCurrencies(string* currencies, int* size)
-        int getRate()
-        int getRage(datetime)
-    }
-
     class OnePrimeAPI {
-        OnePrimeAPI(string token)
+        
     }
 
-    CurrentExchangeAPI --> OnePrimeAPI
+    CurrentExchangeAPI --|> OnePrimeAPI
     
-
-    CurrentExchangeUnit --o CurrentSillyExchangeTable : table
+    Rate --o CurrentExchangeUnit : rates
+    CurrentExchangeUnit --o SillyExchangeTable : table
+    OnePrimeAPI --o CurrentExchangeUnit : api
 ```
