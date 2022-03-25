@@ -9,6 +9,8 @@ using namespace std;
 
 class CurrentExchangeUnit {
    public:
+    CurrentExchangeUnit();
+
     /**
      * @brief Construct a new Exchange Unit object
      * with current exchange rate
@@ -16,6 +18,8 @@ class CurrentExchangeUnit {
     CurrentExchangeUnit(CurrentExchangeAPI* api);
 
     ~CurrentExchangeUnit();
+
+    void setAPI(CurrentExchangeAPI* api);
 
     /**
      * @brief Get the Rate
@@ -49,6 +53,8 @@ class CurrentExchangeUnit {
      * @return time_t 
      */
     time_t getTime();
+
+    void copy(const CurrentExchangeUnit &b);
     
     // /**
     //  * @brief get currency rate by its name

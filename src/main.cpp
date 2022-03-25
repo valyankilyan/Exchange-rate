@@ -7,7 +7,7 @@
 #include "../include/CurrentExchangeUnit.hpp"
 #include "../include/SillyExchangeTable.hpp"
 
-#define DELTA 10
+#define DELTA 1
 #define COUNT 3
 
 using namespace std;
@@ -55,10 +55,30 @@ int main() {
 
     SillyExchangeTable SET = SillyExchangeTable(api);
 
+    // vector <CurrentExchangeUnit*> v;
+    // for (int i = 0; i < 10; i++) {
+        
+    //     v.push_back(new CurrentExchangeUnit(api));
+    //     cout << "vector of units " << i << endl;
+    //     sleep_for(seconds(DELTA));
+    // }
+
     for (int i = 0; i < COUNT; i++) {
-        cout << SET.getLatest() << endl;
-        sleep_for(seconds(10));
+        // cout << "---------------" << i << endl;
+        CurrentExchangeUnit* latest = SET.getLatest();
+        cout << (*latest) << endl;
+        
+        sleep_for(seconds(DELTA));
     }
+
+    CurrentExchangeUnit avg = SET.getAverageRates();
+    cout << "AVERAGE:\n" << avg << endl << endl;
+
+    // cout << "SET[0] = \n" << *(SET[0]) << endl;
+
+    CurrentExchangeUnit med = SET.getMedianRates();
+    cout << "MEDIAN:\n" << med << endl;
+
 
     // cout << "dr = " << dr;
 

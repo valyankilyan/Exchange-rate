@@ -2,6 +2,10 @@
 
 #include <curl/curl.h>
 
+CurrentExchangeUnit::CurrentExchangeUnit() {
+    this->api = NULL;
+}
+
 CurrentExchangeUnit::CurrentExchangeUnit(CurrentExchangeAPI* api) {
     this->api = api;
     request_rates();
@@ -11,6 +15,10 @@ CurrentExchangeUnit::CurrentExchangeUnit(CurrentExchangeAPI* api) {
 CurrentExchangeUnit::~CurrentExchangeUnit() {
     delete[] currencies;
     delete[] rate;
+}
+
+void CurrentExchangeUnit::setAPI(CurrentExchangeAPI* api) {
+    this->api = api;
 }
 
 string* CurrentExchangeUnit::getCurrencies(size_t* size) {
@@ -87,6 +95,18 @@ ostream& operator<<(ostream& os, CurrentExchangeUnit& ceu) {
         os << ceu.currencies[i] << ": " << ceu.rate[i] << endl;
     }
     return os;
+}
+
+void CurrentExchangeUnit::copy(const CurrentExchangeUnit &b) {
+    this->api = b.api;
+    this->size = b.size;
+    this->currencies = new string[size];
+    this->rate = new Rate[size];
+
+    for (size_t i = 0; i < b.size; i++) {
+        this->currencies[i] = b.currencies[i];
+        this->rate[i] = b.rate[i];
+    }
 }
 
 Rate* CurrentExchangeUnit::getAllRates(size_t* size) {

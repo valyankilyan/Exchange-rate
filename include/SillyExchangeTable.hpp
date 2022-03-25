@@ -41,7 +41,7 @@ class SillyExchangeTable {
      * 
      * @return CurrentExchangeUnit& 
      */
-    CurrentExchangeUnit& getLatest();
+    CurrentExchangeUnit* getLatest();
 
     /**
      * @brief returns CurrenExchangeUnit object
@@ -49,7 +49,7 @@ class SillyExchangeTable {
      * @param num 
      * @return CurrentExchangeUnit 
      */
-    CurrentExchangeUnit& operator[](size_t num);
+    CurrentExchangeUnit* operator[](size_t num);
 
     size_t size();
 
@@ -75,7 +75,7 @@ class SillyExchangeTable {
     // currencies
     string* currencies;
     // table rate of currencies
-    vector <CurrentExchangeUnit> table;
+    vector <CurrentExchangeUnit*> table;
     // api
     CurrentExchangeAPI* api;
 };
