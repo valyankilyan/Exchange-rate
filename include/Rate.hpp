@@ -60,6 +60,7 @@ class Rate {
     friend ostream& operator<<(ostream& os, Rate& rate);
 
     Rate operator+(const Rate &b);
+    void operator+=(const Rate &b);
     Rate operator/(const int d);
     
     bool operator<(const Rate &b);

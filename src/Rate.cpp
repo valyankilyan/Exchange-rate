@@ -43,6 +43,13 @@ Rate Rate::operator+(const Rate& b) {
     return temp;
 }
 
+void Rate::operator+=(const Rate& b) {
+    this->serialized = 0;
+    this->mill += b.mill;
+    this->units += b.units + this->mill / RATE_MOD;
+    this->mill %= RATE_MOD;
+}
+
 Rate Rate::operator/(const int d) {
     long double u = units;
     long double m = mill;
