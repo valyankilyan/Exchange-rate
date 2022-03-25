@@ -7,7 +7,7 @@
 #include "../include/CurrentExchangeUnit.hpp"
 #include "../include/SillyExchangeTable.hpp"
 
-#define DELTA 1
+#define DELTA 5
 #define COUNT 3
 
 using namespace std;

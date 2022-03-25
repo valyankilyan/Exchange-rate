@@ -78,11 +78,11 @@
         int getRage(datetime)
     }
 
-    class TinkoffAPI {
-        TinkoffAPI(string token)
+    class OnePrimeAPI {
+        OnePrimeAPI(string token)
     }
 
-    CurrentExchangeAPI --> TinkoffAPI
+    CurrentExchangeAPI --> OnePrimeAPI
     
 
     CurrentExchangeUnit --o CurrentSillyExchangeTable : table
